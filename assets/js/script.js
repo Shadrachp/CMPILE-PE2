@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", function(event) {
+
+
+});
+
 var flag = true;
 var op_flag = false;
 var eq_flag = false;
