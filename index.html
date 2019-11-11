@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/all.js" charset="utf-8"></script>
+    <script src="./assets/js/script.js" charset="utf-8"></script>
+
+    <title>Calculator - CMPILE PE2 (JS)</title>
+  </head>
+  <body>
+      <main>
+        <div class="container">
+            <div class="inner-container">
+              <div class="parent">
+
+                <div class="content-container output-container num">
+                    <div class="out ">
+                        <span id="in">0</span>
+                    </div>
+                    <div class="out">
+                        <span id="res">0</span>
+                    </div>
+                </div>
+
+              </div>
+
+              <div onClick="get_value()" class="content-container btn-outer-container">
+                <div class="btn-container" id="upper-left-corner">
+                    <div class="btn pulse">
+                        C
+                    </div>
+                    <div class="btn uc">
+                      <i style="pointer-events: none;"class="btn fas fa-backspace"></i>
+                    </div>
+                    <span class="fill filler"></span>
+                    <div class="btn btn-operand" id="upper-right-corner">
+                        ÷
+                    </div>
+                  </div>
+                  <div class="btn-container">
+                    <div class="btn num">
+                        7
+                    </div>
+                    <div class="btn num">
+                        8
+                    </div>
+                    <div class="btn num">
+                        9
+                    </div>
+                    <div class="btn btn-operand">
+                      ×
+                    </div>
+                  </div>
+                  <div class="btn-container">
+                    <div class="btn num">
+                        4
+                    </div>
+                    <div class="btn num">
+                        5
+                    </div>
+                    <div class="btn num">
+                        6
+                    </div>
+                    <div class="btn btn-operand">
+                      -
+                    </div>
+                  </div>
+                  <div class="btn-container">
+                    <div class="btn num">
+                      1
+                    </div>
+                    <div class="btn num">
+                      2
+                    </div>
+                    <div class="btn num">
+                      3
+                    </div>
+                    <div class="btn btn-operand">
+                      +
+                    </div>
+                  </div>
+                  <div class="btn-container">
+                    <div class="btn btn-operand" id="lower-left-corner">
+                      (
+                    </div>
+                    <div class="btn num">
+                      0
+                    </div>
+                    <div class="btn btn-operand">
+                      )
+                    </div>
+                    <div class="btn btn-operand" id="lower-right-corner">
+                      =
+                    </div>
+                  </div>
+              </div>
+
+            </div>
+        </div>
+      </main>
+
+  </body>
+</html>

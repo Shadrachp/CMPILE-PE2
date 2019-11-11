@@ -1,0 +1,144 @@
+@font-face {
+  font-family: "Monda-Reg";
+  src: url(../fonts/Monda-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Monda-Bold";
+  src: url(../fonts/Monda-Bold.ttf);
+}
+
+.inner-container {
+  height: 100%;
+  position: relative;
+}
+
+.container {
+  width: 535px;
+  height: 850px;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  overflow: hidden;
+  background-color: #cfcfc4;
+  border-radius: 1%;
+}
+
+.ic.child {
+  pointer-events: none;
+}
+
+.content-container {
+  font-family: Monda-Reg;
+}
+
+.num {
+  font-family: Monda-Bold;
+}
+
+.parent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0px 10px 0px;
+}
+
+
+.output-container {
+  height: 11.75em;
+  margin: 5px;
+  width: 503px;
+    /* border: solid black; */
+}
+
+.out {
+  position: relative;
+  width: 100%;
+  height: 94px;
+  text-align: right;
+  bottom: 0;
+  overflow-x:auto;
+  direction: rtl;
+  /* border: solid black; */
+}
+
+#in {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+
+.out > span {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  font-size: 40px;
+  top: 0;
+  overflow-x: auto;
+  direction: ltr;
+  white-space: nowrap;
+}
+
+
+
+.btn-outer-container {
+  width: 530px;
+  text-align:center;
+  margin: 15px 2.5px 0px 2.5px;
+  bottom: 0px;
+}
+
+.btn-container {
+  display: flex;
+  margin: 2.5px 3px 2.5px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn, .fill{
+  margin-left: 2.5px;
+  height: 120px;
+  width: 124px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: black;
+  color: #fe9900;
+  font-size: 35px;
+  transition: 0.1s
+}
+
+.btn:hover{
+  animation: pulse 1s infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.01);
+  100% { transform: scale(1); }
+  }
+}
+
+.sym {
+  color: #fff;
+}
+
+.btn-operand{
+  font-size: 50px;
+}
+
+.btn:hover {
+  background-color: #393838;
+}
+
+.filler {
+  cursor: default;
+  opacity: 0;
+}
