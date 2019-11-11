@@ -1,20 +1,15 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-});
-
-/*
-EXPR: TERM | EXPR + TERM | EXPR - TERM
-TERM: FACTOR | FACTOR * TERM | FACTOR / TERM
-FACTOR: TERM | EXPR
-*/
-
 var flag = true;
 var op_flag = false;
 var eq_flag = false;
 
+window.onerror = function() {
+  set_value('res', 'SYNTAX ERROR');
+  flag =true;
+};
+
 const Parser = () =>{
     Parser.input = null;
     Parser.curr=null;
-    // Parser.count = 0;
 };
 
 function init_parser (str) {
@@ -34,13 +29,12 @@ Parser.EXPR = ()=>{
     if (Parser.curr === '+'){
       Parser.next();
       result += Parser.TERM();
-    }
-    if (Parser.curr === '-'){
+    }if (Parser.curr === '-'){
       Parser.next();
       result -= Parser.TERM();
     }
   }
-  console.log("EXPR: " + result)
+
   return result;
 };
 
@@ -48,22 +42,22 @@ Parser.TERM = () => {
   let result = Parser.FACTOR();
   let op = '*/';
   while (op.includes(Parser.curr)) {
-    if (Parser.curr === '*'){
-      Parser.next();
-      result *= Parser.TERM();console.log("FACTOR: " + result)
-    }
     if (Parser.curr === '/'){
       Parser.next();
       result /= Parser.TERM();
     }
+    if (Parser.curr === '*'){
+      Parser.next();
+      result *= Parser.TERM();
+    }
   }
-  console.log("TERM: " + result)
+
   return result;
 };
 
 Parser.FACTOR = () => {
   let result = null;
-    if (isNum(Parser.curr[0]) || isNum(Parser.curr[Parser.curr.length - 1])) {
+    if (isNum(Parser.curr.charAt(0)) || isNum(Parser.curr.charAt(curr.length - 1))) {
       result = parseFloat(Parser.curr);
       Parser.next();
     }
@@ -83,7 +77,7 @@ function isNum(str) {
 function get_value(b) {
   b = b ||  window.event;
   b = b.target || b.srcElement;
-  console.log(b)
+
 
   if(b.classList[0] === "btn"){
     let n = b.innerHTML.trim();
@@ -128,14 +122,18 @@ function get_value(b) {
 
 function tokenize (str) {
   let tokens=[];
-  str = str.replace("÷", "/");
-  str = str.replace("×", "*");
+  let re = new RegExp("×", 'g');
+  let re2 = new RegExp("÷", 'g');
+  str = str.replace(re2, "/");
+  str = str.replace(re, "*");
   for (var i = 0; i < str.length; i++) {
     if(isNum(str.charAt(i))&&isNum(tokens[tokens.length - 1]))
       tokens[tokens.length - 1] += str.charAt(i);
     else tokens.push(str.charAt(i));
   }
 
+
+  console.log("Tokenizer: " + tokens);
   return tokens;
 }
 
