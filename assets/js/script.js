@@ -19,36 +19,66 @@ const Parser = () =>{
 
 function init_parser (str) {
   Parser.input = str;
-  Parser.curr = Parser.input.charAt(0);
+  Parser.curr = Parser.input[0];
 }
 
 Parser.next = () => {
-  Parser.input = Parser.input.slice(1,);
-  Parser.curr = Parser.input.charAt(0);
+  Parser.input = Parser.input.slice(1);
+  Parser.curr = Parser.input[0];
   // Parser.count++;
 }
 Parser.EXPR = ()=>{
-  // let result = Parser.term();
-  // Parser.next();
-
-  return Parser.input;
+  let result = Parser.TERM();
+  let op = '+-';
+  while (op.includes(Parser.curr)) {
+    if (Parser.curr === '+'){
+      Parser.next();
+      result += Parser.TERM();
+    }
+    if (Parser.curr === '-'){
+      Parser.next();
+      result -= Parser.TERM();
+    }
+  }
+  console.log("EXPR: " + result)
+  return result;
 };
 
 Parser.TERM = () => {
-
+  let result = Parser.FACTOR();
+  let op = '*/';
+  while (op.includes(Parser.curr)) {
+    if (Parser.curr === '*'){
+      Parser.next();
+      result *= Parser.TERM();console.log("FACTOR: " + result)
+    }
+    if (Parser.curr === '/'){
+      Parser.next();
+      result /= Parser.TERM();
+    }
+  }
+  console.log("TERM: " + result)
+  return result;
 };
 
 Parser.FACTOR = () => {
+  let result = null;
+    if (isNum(Parser.curr[0]) || isNum(Parser.curr[Parser.curr.length - 1])) {
+      result = parseFloat(Parser.curr);
+      Parser.next();
+    }
+    if (Parser.curr === '('){
+      Parser.next();
+      result = Parser.EXPR();
+      Parser.next();
+    }
 
+  return result;
 };
 
-Parser.isNum = (str) => {
+function isNum(str) {
   return !isNaN(str);
 }
-
-
-
-
 
 function get_value(b) {
   b = b ||  window.event;
@@ -86,15 +116,28 @@ function get_value(b) {
       else {
 
         // alert(get_el_value('in'));
-        init_parser(get_el_value('in'));
-        alert(Parser.EXPR());
+        let str = get_el_value('in');
+
+        init_parser(tokenize(str));
+
         set_value('res', Parser.EXPR());
       }
     }
   }
 }
 
+function tokenize (str) {
+  let tokens=[];
+  str = str.replace("÷", "/");
+  str = str.replace("×", "*");
+  for (var i = 0; i < str.length; i++) {
+    if(isNum(str.charAt(i))&&isNum(tokens[tokens.length - 1]))
+      tokens[tokens.length - 1] += str.charAt(i);
+    else tokens.push(str.charAt(i));
+  }
 
+  return tokens;
+}
 
 function scroll_move(el) {
   var o = document.getElementById(el);
