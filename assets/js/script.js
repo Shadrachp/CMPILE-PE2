@@ -8,7 +8,7 @@ var op_flag = false;
 var eq_flag = false;
 
 window.onerror = function() {
-  set_value('res', 'SYNTAX ERROR');
+  //set_value('res', 'SYNTAX ERROR');
   flag =true;
 };
 
