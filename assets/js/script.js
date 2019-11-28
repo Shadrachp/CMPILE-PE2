@@ -8,7 +8,7 @@ var op_flag = false;
 var eq_flag = false;
 
 window.onerror = function() {
-  //set_value('res', 'SYNTAX ERROR');
+  set_value('res', 'SYNTAX ERROR');
   flag =true;
 };
 
@@ -62,7 +62,7 @@ Parser.TERM = () => {
 
 Parser.FACTOR = () => {
   let result = null;
-    if (isNum(Parser.curr.charAt(0)) || isNum(Parser.curr.charAt(curr.length - 1))) {
+    if (isNum(Parser.curr.charAt(0)) || isNum(Parser.curr.charAt(Parser.curr.length - 1))) {
       result = parseFloat(Parser.curr);
       Parser.next();
     }
