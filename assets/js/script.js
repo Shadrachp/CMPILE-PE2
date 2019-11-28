@@ -12,6 +12,13 @@ window.onerror = function() {
   flag =true;
 };
 
+window.onkeyup = function(e) {
+   var key = e.keyCode ? e.keyCode : e.which;
+   if (key >= 48 && key <= 57) {
+       set_value('in', e.key);
+   }
+}
+
 const Parser = () =>{
     Parser.input = null;
     Parser.curr=null;
